@@ -170,7 +170,7 @@ namespace HairSalon.Models
 
         public void Edit(string newName)
         {
-        MySqlConnection conn = DB.Connection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"UPDATE clients SET name = @newName WHERE id = @searchId;";
@@ -195,7 +195,28 @@ namespace HairSalon.Models
             }
         }
 
+        public void DeleteClient()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM clients WHERE id = @thisId;";
+
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@thisId";
+            searchId.Value = _id;
+            cmd.Parameters.Add(searchId);
+
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
 
 
+
+        }
     }
 }
