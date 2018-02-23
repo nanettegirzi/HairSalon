@@ -31,34 +31,48 @@ namespace HairSalon.Tests
         public void Equals_OverrideTrueIfClientsAreIdentical_Client()
         {
             //Arrange, Act
-            Client firstClient = new Client("Brenda", 1234567890, 1, 1);
-            Client secondClient = new Client("Brenda", 1234567890, 1, 1);
+            Client firstClient = new Client("Brenda", 1, 1);
+            Client secondClient = new Client("Brenda", 1, 1);
 
             //Assert
             Assert.AreEqual(firstClient, secondClient);
         }
 
-        // [TestMethod]
-        // public void GetName_ReturnName_String()
-        // {
-        //     string name= "Andy Smith";
-        //     Client newClient = new Client(name);
-        //
-        //     string result = newClient.GetName();
-        //
-        //     Assert.AreEqual(name, result);
-        // }
+         [TestMethod]
+         public void GetName_ReturnName_String()
+         {
+            string name= "Andy Smith";
+            Client newClient = new Client(name);
 
-        [TestMethod]
-        public void Save_SavesClientToDatabase_ClientList()
-        {
+            string result = newClient.GetName();
+
+            Assert.AreEqual(name, result);
+         }
+
+         [TestMethod]
+         public void Save_SavesClientToDatabase_ClientList()
+         {
+          Client testClient = new Client("Andy Smith", 1);
+           testClient.Save();
+           //Act
+      List<Client> result = Client.GetAll();
+           List<Client> testList = new List<Client>{testClient};
+
+           CollectionAssert.AreEqual(testList, result);
+         }
+
+         [TestMethod]
+         public void Find_FindsClientInDatabase_Item()
+         {
+           //Arrange
           Client testClient = new Client("Andy Smith", 1);
           testClient.Save();
-          //Act
-          List<Client> result = Client.GetAll();
-          List<Client> testList = new List<Client>{testClient};
 
-          CollectionAssert.AreEqual(testList, result);
-        }
+          //Act
+           Client foundClient = Client.Find(testClient.GetId());
+
+           //Assert
+           Assert.AreEqual(testClient, foundClient);
+     }
     }
 }
