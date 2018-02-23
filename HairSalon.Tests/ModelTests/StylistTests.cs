@@ -27,5 +27,31 @@ namespace HairSalon.Tests
          //Assert
          Assert.AreEqual(0, result);
        }
+
+       [TestMethod]
+      public void Equals_ReturnsTrueForSameName_Stylist()
+      {
+        //Arrange, Act
+        Stylist firstStylist = new Stylist("Nanette Girzi");
+        Stylist secondStylist = new Stylist("Nanette Girzi");
+
+        //Assert
+        Assert.AreEqual(firstStylist, secondStylist);
+      }
+
+      [TestMethod]
+      public void Save_SavesSylistToDatabase_StylistList()
+      {
+        //Arrange
+        Stylist testStylist = new Stylist("Megan Smith");
+        testStylist.Save();
+
+        //Act
+        List<Stylist> result = Stylist.GetAll();
+        List<Stylist> testList = new List<Stylist>{testStylist};
+
+        //Assert
+        CollectionAssert.AreEqual(testList, result);
+      }
     }
 }

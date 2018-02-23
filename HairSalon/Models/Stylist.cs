@@ -9,13 +9,13 @@ namespace HairSalon.Models
         private string _name;
         private int _id;
 
-    public Stylist (string name, int id = 0)
-    {
-        _name = name;
-        _id = id;
-    }
+        public Stylist (string name, int id = 0)
+        {
+            _name = name;
+            _id = id;
+        }
 
-    public override bool Equals(System.Object otherStylist)
+        public override bool Equals(System.Object otherStylist)
         {
             if (!(otherStylist is Stylist))
             {
@@ -63,6 +63,29 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
             return allStylists;
+        }
+
+        public void Save()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO stylists (name) VALUES (@name);";
+
+            MySqlParameter name = new MySqlParameter();
+            name.ParameterName = "@name";
+            name.Value = this._name;
+            cmd.Parameters.Add(name);
+
+            cmd.ExecuteNonQuery();
+            _id = (int) cmd.LastInsertedId;
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+        }
     }
-}
 }
