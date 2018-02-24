@@ -19,10 +19,10 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-       public void GetAll_StylistsEmptyAtFirst_0()
+       public void GetAllStylists_StylistsEmptyAtFirst_0()
        {
          //Arrange, Act
-         int result = Stylist.GetAll().Count;
+         int result = Stylist.GetAllStylists().Count;
 
          //Assert
          Assert.AreEqual(0, result);
@@ -40,18 +40,67 @@ namespace HairSalon.Tests
       }
 
       [TestMethod]
-      public void Save_SavesSylistToDatabase_StylistList()
+      public void SaveStylist_SavesStylistToDatabase_StylistList()
       {
         //Arrange
         Stylist testStylist = new Stylist("Megan Smith");
-        testStylist.Save();
+        testStylist.SaveStylist();
 
         //Act
-        List<Stylist> result = Stylist.GetAll();
+        List<Stylist> result = Stylist.GetAllStylists();
         List<Stylist> testList = new List<Stylist>{testStylist};
 
         //Assert
         CollectionAssert.AreEqual(testList, result);
       }
+
+      [TestMethod]
+     public void SaveStylist_DatabaseAssignsIdToStylist_Id()
+     {
+       //Arrange
+       Stylist testStylist = new Stylist("Joe Anderson");
+       testStylist.SaveStylist();
+
+       //Act
+       Stylist savedStylist = Stylist.GetAllStylists()[0];
+
+       int result = savedStylist.GetId();
+       int testId = testStylist.GetId();
+
+       //Assert
+       Assert.AreEqual(testId, result);
+    }
+
+    [TestMethod]
+    public void Find_FindsStylistInDatabase_Stylist()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Joe Smith");
+      testStylist.SaveStylist();
+
+      //Act
+      Stylist foundStylist = Stylist.FindStylist(testStylist.GetId());
+
+      //Assert
+      Assert.AreEqual(testStylist, foundStylist);
+    }
+
+    // [TestMethod]
+    // public void GetClients_RetrievesAllClientsWithStylist_ClientList()
+    // {
+    //   Stylist testStylist = new Stylist("Mindy Smith", 0);
+    //   testStylist.SaveStylist();
+    //
+    //   Client firstClient = new Client("Cliff Mass", testStylist.GetId());
+    //   firstClient.Save();
+    //   Client secondClient = new Client("Heather Girzi", testStylist.GetId());
+    //   secondClient.Save();
+    //
+    //
+    //   List<Client> testClientList = new List<Client> {firstClient, secondClient};
+    //   List<Client> resultClientList = testStylist.GetClients();
+    //
+    //   CollectionAssert.AreEqual(testClientList, resultClientList);
+    // }
     }
 }
