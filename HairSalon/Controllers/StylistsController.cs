@@ -5,7 +5,7 @@ using System;
 
 namespace HairSalonApp.Ccsontrollers
 {
-    public class CategoriesController : Controller
+    public class HomeController : Controller
     {
 
         [HttpGet("/")]
