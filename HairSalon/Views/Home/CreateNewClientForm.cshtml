@@ -1,0 +1,11 @@
+@{
+  Layout="_Layout";
+}
+
+    <h3>Add a new client:</h3>
+<form action="/clients/details" method="post">
+  <label for="new-client">Client Name</label>
+  <input id="new-client" name="new-client" type="text">
+  <input name="stylist-id" type="hidden" value="@Model">
+   <button type="submit">Add client</button>
+</form>
