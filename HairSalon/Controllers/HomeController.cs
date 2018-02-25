@@ -55,5 +55,48 @@ namespace HairSalon.Controllers
           Stylist.DeleteAllStylists();
           return View();
         }
+
+        [HttpGet("/clients/new/{clientid}")]
+        public ActionResult CreateNewClientForm(int clientid)
+        {
+            return View(clientid);
+        }
+
+        [HttpGet("/clients/{id}")]
+        public ActionResult ClientDetails(int id)
+        {
+            Client client = Client.Find(id);
+            return View(client);
+        }
+
+        [HttpPost("/clients")]
+        public ActionResult CreateNewClient()
+        {
+          Client newClient = new Client (Request.Form["new-client"]);
+          newClient.Save();
+          List<Client> allClients = Client.GetAll();
+          return View("Index", allClients);
+        }
+
+        [HttpGet("/clients/{id}/update")]
+        public ActionResult UpdateClientForm(int id)
+        {
+          Client thisClient = Client.Find(id);
+            return View(thisClient);
+        }
+        [HttpPost("/clients/{id}/update")]
+        public ActionResult UpdateClient(int id)
+        {
+            Client thisClient = Client.Find(id);
+            thisClient.Edit(Request.Form["newname"]);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost("/clients/delete")]
+        public ActionResult DeleteClients()
+        {
+          Client.DeleteAll();
+          return View();
+        }
     }
 }

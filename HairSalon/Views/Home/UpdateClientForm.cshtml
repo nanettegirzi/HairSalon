@@ -1,0 +1,12 @@
+@{
+  Layout="_Layout";
+}
+    <h2>Edit Client: @Model.GetName()</h2>
+    <form action="/clients/details" method="post">
+        <label for="name">Client:</label>
+        <input type="text" name="newname" value="@Model.GetName()">
+        <input name="client-id" type="hidden" value="@Model">
+        <button type="submit">Edit</button>
+    </form>
+    <a href="/clients/@Model.GetId()/deleteclient"><button type="submit" name="button">Delete Client</button></a>
+    <h4><a href="/">Return home</a></h4>
