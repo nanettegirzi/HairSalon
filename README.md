@@ -6,7 +6,7 @@
 
 ## Description
 
-This application will allow employees of a hair salon see a list of stylists and see the stylists details and also a see a list of each stylists clients. New stylists will be able to be added to the system, and new clients can be added to specific stylists. Clients will be able to be updated or deleted from the system.
+This application will allow employees of a hair salon see a list of stylists and see the stylists details and also a see a list of each stylists clients. New stylists will be able to be added to the system, and new clients can be added to specific stylists.
 
 
 ##MySQL Commands
@@ -14,7 +14,7 @@ This application will allow employees of a hair salon see a list of stylists and
 - CREATE DATABASE nanette_girzi;
 - USE nanette_girzi;
 - CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255));
-- CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255), phone_number VARCHAR(255), stylist_id INT);
+- CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255), stylist_id INT);
 
 
 ## Setup/Installation Requirements
@@ -36,15 +36,11 @@ This application will allow employees of a hair salon see a list of stylists and
 
 #### User will click on stylist Name and see stylists details
 * Input: click on stylists name
-* Output : Stylist info(Name) and  list of clients(Name, Phone Number) are shown
+* Output : Stylist info(Name) and  list of clients are shown
 
 #### User is able to add new clients to specific stylists
 * Input: click on Add Client button
-* Output : Client (Name, Phone Number) is added to Stylist list page
-
-#### User is able to update Clients name or phone number
-* Input: click edit button next to client name.
-* Output : client information is changed and updated to database
+* Output : Client is added to Stylist list page
 
 #### User can delete  ALL clients
 * Input: click on delete all clients button
@@ -66,8 +62,8 @@ If you have suggestions please email ngirzi@gmail.com
 ## Technologies Used
 
 * C#
+* MySQL
 * HTML
-* CSS
 * Bootstrap
 * MVC  
 * Razor

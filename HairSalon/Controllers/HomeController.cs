@@ -78,19 +78,19 @@ namespace HairSalon.Controllers
           return View("Index", allClients);
         }
 
-        [HttpGet("/clients/{id}/update")]
-        public ActionResult UpdateClientForm(int id)
-        {
-          Client thisClient = Client.Find(id);
-            return View(thisClient);
-        }
-        [HttpPost("/clients/{id}/update")]
-        public ActionResult UpdateClient(int id)
-        {
-            Client thisClient = Client.Find(id);
-            thisClient.Edit(Request.Form["newname"]);
-            return RedirectToAction("Index");
-        }
+        // [HttpGet("/clients/{id}/update")]
+        // public ActionResult UpdateClientForm(int id)
+        // {
+        //   Client thisClient = Client.Find(id);
+        //     return View(thisClient);
+        // }
+        // [HttpPost("/clients/{id}/update")]
+        // public ActionResult UpdateClient(int id)
+        // {
+        //     Client thisClient = Client.Find(id);
+        //     thisClient.Edit(Request.Form["newname"]);
+        //     return RedirectToAction("Index");
+        // }
 
         [HttpPost("/clients/delete")]
         public ActionResult DeleteClients()

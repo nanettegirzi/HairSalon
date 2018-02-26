@@ -7,7 +7,7 @@
         <ul>
           @foreach(var client in Model["clients"])
           {
-            <li><p>@client.GetName() | <a href="/clients/@client.GetId()/update"> Edit </a> </p></li>
+            <li><p>@client.GetName()</p></li>
           }
         </ul>
         <a href="/clients/new/@Model["stylist"].GetId()">Add new client.</a>
