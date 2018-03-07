@@ -10,8 +10,6 @@ namespace HairSalon.Models
         private string _specialty;
 
 
-
-
         public Specialty(string specialty, int id =0)
         {
             _id = id;

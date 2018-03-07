@@ -10,15 +10,15 @@ namespace HairSalon.Models
 
         private int _id;
         private string _clientName;
-        private string _clientEmail;
+        private int _stylistId;
 
 
-        public Client(string clientName, string clientEmail, int id = 0)
+        public Client(string clientName, int stylistId, int id = 0)
         {
 
             _id = id;
             _clientName = clientName;
-            _clientEmail = clientEmail;
+            _stylistId = stylistId;
         }
 
         public override bool Equals(System.Object otherClient)
@@ -30,12 +30,10 @@ namespace HairSalon.Models
             else
             {
                 Client newClient = (Client) otherClient;
-                bool idEquality = (this.GetClientId() == newClient.GetClientId());
-                bool clientNameEquality = (this.GetClientName() == newClient.GetClientName());
-                bool clientEmailEquality = (this.GetClientEmail() == newClient.GetClientEmail());
-                return (idEquality && clientNameEquality && clientEmailEquality);
+                return this.GetClientId().Equals(newClient.GetClientId());
             }
         }
+
         public override int GetHashCode()
         {
             return this.GetClientName().GetHashCode();
@@ -52,22 +50,50 @@ namespace HairSalon.Models
             return _id;
         }
 
-        public string GetClientEmail()
+        public int GetStylistId()
         {
-            return _clientEmail;
+            return _stylistId;
         }
 
-        // public static void DeleteAllClients()
-        // {
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     var cmd = conn.CreateCommand() as MySqlCommand;
-        //     cmd.CommandText = @"DELETE FROM clients;";
+        public static void DeleteAllClients()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM clients;";
+
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public void SaveClient()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO clients (client_name, stylist_id) VALUES (@clientName, @stylist_id);";
+
+            MySqlParameter clientName = new MySqlParameter();
+            clientName.ParameterName = "@name";
+            clientName.Value = this._clientName;
+            cmd.Parameters.Add(clientName);
+
+        //     MySqlParameter stylistId = new MySqlParameter();
+        //     stylistId.ParameterName = "@stylist_id";
+        //     stylistId.Value = this._stylistId;
+        //     cmd.Parameters.Add(stylistId);
         //
         //     cmd.ExecuteNonQuery();
-        //
+        //     _id = (int) cmd.LastInsertedId;
         //     conn.Close();
+        //
         //     if (conn != null)
         //     {
         //         conn.Dispose();
@@ -88,8 +114,9 @@ namespace HairSalon.Models
         //         int clientId = rdr.GetInt32(0);
         //         string clientName = rdr.GetString(1);
         //         string clientEmail = rdr.GetString(2);
+        //         int stylistId = rdr.GetInt32(3);
         //
-        //         Client newClient = new Client(clientName, clientEmail, clientId);
+        //         Client newClient = new Client(clientName, clientEmail, stylistId, clientId);
         //         allClients.Add(newClient);
         //     }
         //     conn.Close();
@@ -101,34 +128,6 @@ namespace HairSalon.Models
         // }
         //
         //
-        // public void SaveClient()
-        // {
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     var cmd = conn.CreateCommand() as MySqlCommand;
-        //     cmd.CommandText = @"INSERT INTO clients (client_name, client_email) VALUES (@ClientName, @ClientEmail);";
-        //
-        //     MySqlParameter clientName = new MySqlParameter();
-        //     clientName.ParameterName = "@ClientName";
-        //     clientName.Value = this._clientName;
-        //     cmd.Parameters.Add(clientName);
-        //
-        //     MySqlParameter clientEmail = new MySqlParameter();
-        //     clientEmail.ParameterName = "@ClientEmail";
-        //     clientEmail.Value = this._clientEmail;
-        //     cmd.Parameters.Add(clientEmail);
-        //
-        //
-        //     cmd.ExecuteNonQuery();
-        //     _id = (int) cmd.LastInsertedId;
-        //
-        //     conn.Close();
-        //     if (conn != null)
-        //     {
-        //         conn.Dispose();
-        //     }
-        // }
         //
         // public static Client FindClient(int id)
         // {
@@ -148,6 +147,7 @@ namespace HairSalon.Models
         //     int clientId = 0;
         //     string clientName = "";
         //     string clientEmail = "";
+        //     int stylistId = 0;
         //
         //
         //     while (rdr.Read())
@@ -155,10 +155,11 @@ namespace HairSalon.Models
         //         clientId = rdr.GetInt32(0);
         //         clientName = rdr.GetString(1);
         //         clientEmail = rdr.GetString(2);
+        //         stylistId = rdr.GetInt32(3);
         //
         //     }
         //
-        //     Client foundClient = new Client(clientName, clientEmail, clientId);
+        //     Client foundClient = new Client(clientName, clientEmail, stylistId, clientId);
         //
         //     conn.Close();
         //     if (conn != null)
@@ -169,12 +170,12 @@ namespace HairSalon.Models
         //     return foundClient;
         // }
         //
-        // public void UpdateClient(string newClientName, string newClientEmail)
+        // public void UpdateClient(string newClientName, string newClientEmail, int newStylistId)
         // {
         //     MySqlConnection conn = DB.Connection();
         //     conn.Open();
         //     var cmd = conn.CreateCommand() as MySqlCommand;
-        //     cmd.CommandText = @"UPDATE clients SET client_name = @newClientName, client_email = @newClientEmail, WHERE id = @searchId;";
+        //     cmd.CommandText = @"UPDATE clients SET client_name = @newClientName, client_email = @newClientEmail, stylist_id = @newStylistId WHERE id = @searchId;";
         //
         //     MySqlParameter searchId = new MySqlParameter();
         //     searchId.ParameterName = "@searchId";
@@ -187,12 +188,19 @@ namespace HairSalon.Models
         //     cmd.Parameters.Add(clientName);
         //
         //     MySqlParameter clientEmail = new MySqlParameter();
-        //     clientEmail.ParameterName = "@newName";
+        //     clientEmail.ParameterName = "@newClientEmail";
         //     clientEmail.Value = newClientName;
         //     cmd.Parameters.Add(clientEmail);
         //
+        //     MySqlParameter stylistId = new MySqlParameter();
+        //     stylistId.ParameterName = "@newStylistId";
+        //     stylistId.Value = newStylistId;
+        //     cmd.Parameters.Add(stylistId);
+        //
         //     cmd.ExecuteNonQuery();
+        //     _clientName = newClientName;
         //     _clientEmail = newClientEmail;
+        //     _stylistId = newStylistId;
         //
         //     conn.Close();
         //     if (conn != null)
