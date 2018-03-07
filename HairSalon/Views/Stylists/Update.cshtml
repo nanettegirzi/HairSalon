@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+<div class="container-fluid">
+<hr />
+<h2>Edit Stylist Information: @Model.GetStylistName()</h2>
+<form action="/stylists/@Model.GetStylistId()/update" method="post">
+  <label for="new-stylist-name">Stylist Name:</label>
+  <input type="text" name="new-stylist-name" value="@Model.GetStylistName()">
+  <label for="new-stylist-rate">Stylist Hourly Rate:</label>
+  <input type="text" name="new-stylist-rate" value="@Model.GetStylistRate()">
+  <button type="submit">Update</button>
+</form>
+<hr>
+<h4><a href="/stylists">Back to Stylist List</a></h4>
+</div>

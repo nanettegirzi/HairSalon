@@ -1,1 +1,48 @@
-﻿
+/* The navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: sticky;
+    top 0;
+    width: 100%;
+  }
+
+/* Links inside the navbar */
+.navbar a {
+    float: left;
+    color: #f2f2f2;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.jumbotron {
+  background-color: #7a0019;
+  text-align: center;
+  color: #ffcc33;
+  padding: 50px 50px 50px 50px;
+}
+
+#jumbo {
+  background-color: white;
+}
+
+body {
+  background-color: #EAF2F8;
+}
+
+a {
+  color: black;
+}
+
+.img {
+   width: 100%;
+   padding: 0px;
+   height: 100%;
+}

@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Snappy Snips</title>
-    <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
-    <link rel="stylesheet" type="text/css" href="~/css/styles.css"/>
-  </head>
-  <body>
-      <div class="jumbotron">
-      <h1><center>Snappy Snips<center></h1>
-      <hr>
-    </div>
-    <br>
-    <div class="container">
+<head>
+  <meta charset="utf-8">
+  <title>Snappy Snips</title>
+  <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+  <link rel="stylesheet" type="text/css" href="~/css/styles.css"/>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
 
-    @RenderBody()
-   </div>
+  <nav class="navbar navbar-expand-lg navbar-fixed top navbar-dark bg-drk">
+  <a class="navbar-brand" href="/">Snappy Snips</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/stylists">Stylists</a>
+      <a class="nav-item nav-link" href="/clients">Clients</a>
+      <a class="nav-item nav-link" href="/specialties">Specialties</a>
+    </div>
+  </div>
+</nav>
+      @RenderBody()
+
   </body>
-</html>
+  </html>
