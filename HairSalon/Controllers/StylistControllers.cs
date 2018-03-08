@@ -28,6 +28,7 @@ namespace HairSalon.Controllers
             return RedirectToAction("Index");
         }
 
+      
         [HttpGet("/stylists/{id}")]
         public ActionResult StylistDetail(int id)
         {
@@ -72,5 +73,12 @@ namespace HairSalon.Controllers
             thisStylist.DeleteStylist();
             return RedirectToAction("index");
         }
+
+        [HttpPost("/stylists/delete/all")]
+      public ActionResult DeleteAllStylists()
+      {
+        Stylist.DeleteAllStylists();
+        return RedirectToAction("index");
+      }
     }
 }

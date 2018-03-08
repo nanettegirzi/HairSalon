@@ -205,6 +205,7 @@ namespace HairSalon.Models
             }
         }
 
+    
 
         public List<Client> GetClients()
         {
@@ -237,6 +238,7 @@ namespace HairSalon.Models
             }
             return clients;
         }
+
 
         public void AddSpecialty(Specialty newSpecialty)
         {

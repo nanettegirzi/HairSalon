@@ -1,12 +1,14 @@
 @{
-  Layout="_Layout";
+  Layout = "_Layout";
 }
-    <h2>Edit Client: @Model.GetName()</h2>
-    <form action="/stylists/details" method="post">
-        <label for="name">Client:</label>
-        <input type="text" name="newname" value="@Model.GetName()">
-        <input name="stylist-id" type="hidden" value="@Model">
-        <button type="submit">Edit</button>
-    </form>
-    
-    <h4><a href="/">Return home</a></h4>
+<div class="container-fluid">
+<hr />
+<h2>Edit Client: @Model.GetName()</h2>
+<form action="/clients/@Model.GetId()/update" method="post">
+  <label for="new-client-name">Client Name:</label>
+  <input type="text" name="new-client-name" value="@Model.GetName()">
+  <button type="submit">Update</button>
+</form>
+<hr>
+<h4><a href="/stylists">Back to Client List</a></h4>
+</div>

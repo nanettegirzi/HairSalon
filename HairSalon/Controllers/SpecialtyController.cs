@@ -49,6 +49,7 @@ namespace HairSalon.Controllers
 
         }
 
+
         [HttpPost("/specialties/{specialtyId}/stylists/new")]
         public ActionResult AddStylist(int specialtyId)
         {
