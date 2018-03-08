@@ -1,0 +1,20 @@
+@using HairSalon.Models;
+
+@{
+  Layout="_Layout";
+}
+<br>
+<div class="container-fluid">
+<h2>Add new client</h2>
+<hr />
+<div class ="form-group">
+  <form action="/clients" method="post">
+    <input name="stylist-id" type = "hidden" value="@Model">
+
+    <label for="client-name">Client Name:</label>
+    <input id="client-name" name="client-name" type="text">
+    <hr>
+    <button type="submit" class="btn btn-primary btn-active" role="button" aria-pressed="true>">Add Client</button>
+  </div>
+  </div>
+</form>

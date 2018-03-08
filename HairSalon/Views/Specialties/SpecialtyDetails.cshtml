@@ -1,0 +1,33 @@
+@{
+Layout="_Layout";
+}
+
+@using HairSalon.Models;
+
+<div class="container-fluid">
+<h1>Specialty: @Model["specialty"].GetSpecialty()</h1>
+<hr />
+@if (@Model["specialtyStylists"].Count != 0)
+{
+  <h4>Below Stylists have this Specialty:</h4>
+  <ul>
+    @foreach (var stylist in @Model["specialtyStylists"])
+    {
+      <li>@stylist.GetStylistName()</li>
+    }
+  </ul>
+}
+<h4>Add a stylist to this specialty:</h4>
+<div class="form-group">
+  <form action='/specialties/@Model["specialty"].GetSpecialtyId()/stylists/new' method='post'>
+    <label for='stylist-id'>Select a Stylist</label>
+    <select id='stylist-id' name='stylist-id' type='text'>
+      @foreach (var stylist in @Model["allStylists"])
+      {
+        <option value='@stylist.GetStylistId()'>@stylist.GetStylistName()</option>
+      }
+    </select>
+    <button type="submit" class="btn btn-secondary btn-active" role="button" aria-pressed="true>">Add Stylist</button>
+  </div>
+</form>
+</div>

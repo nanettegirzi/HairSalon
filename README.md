@@ -6,53 +6,40 @@
 
 ## Description
 
-This application will allow employees of a hair salon see a list of stylists and see the stylists details and also a see a list of each stylists clients. New stylists will be able to be added to the system, and new clients can be added to specific stylists. Clients will be able to be updated or deleted from the system.
+This application will allow employees of a hair salon see a list of stylists, clients and specialties the salon has to offer.
 
 
 ##MySQL Commands
 
 - CREATE DATABASE nanette_girzi;
 - USE nanette_girzi;
-- CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255));
-- CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255), phone_number VARCHAR(255), stylist_id INT);
+- CREATE TABLE stylists (id serial PRIMARY KEY, stylist_name VARCHAR(255), stylist_rate VARCHAR(255));
+- CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255), stylist_id INT);
+- CREATE TABLE specialties (id serial PRIMARY KEY, specialty VARCHAR(255), stylist_id INT);
+- CREATE TABLE specialty_stylists (id serial PRIMARY KEY, specialty_id INT, stylist_id INT);
+
 
 
 ## Setup/Installation Requirements
 
 * Clone this repository to your desktop
 * Navigate to project folder on desktop
-* In terminal, inside project folder, type command "dotnet resotore" "dotnet build", then "dotnet run"
+* In terminal, inside project folder, type command "dotnet restore" "dotnet build", then "dotnet run"
 * Open browser and go to http://localhost:5000
 
 ## Specifications
 
-#### Both tables in database are empty
-* Input: none
-* Output : empty
-
 #### Allow user to enter a new stylist
-* Input: "Sue Smith"
-* Output : "Sue Smith" is added on list and populated in database
-
-#### User will click on stylist Name and see stylists details
-* Input: click on stylists name
-* Output : Stylist info(Name) and  list of clients(Name, Phone Number) are shown
-
-#### User is able to add new clients to specific stylists
-* Input: click on Add Client button
-* Output : Client (Name, Phone Number) is added to Stylist list page
-
-#### User is able to update Clients name or phone number
-* Input: click edit button next to client name.
-* Output : client information is changed and updated to database
-
-#### User can delete  ALL clients
-* Input: click on delete all clients button
-* Output : all clients are deleted from a specific stylist list and database
-
-#### User can delete  ALL stylists
-* Input: click on delete all stylists button
-* Output : all stylists are deleted from a specific stylist list and database
+#### Allow user to enter new client associated with stylists
+#### Allow user to add specialties associated with stylists
+#### Allow user to delete individual stylists
+#### Allow user to edit Stylist details
+#### Allow user to view stylist details
+#### Allow user to Delete individual clients
+#### Allow user to Edit individual clients
+#### Allow  user to add specialties
+#### Allow user to delete specialties
+#### Allow user to add stylists to specialties
 
 
 ## Known Bugs
@@ -66,8 +53,8 @@ If you have suggestions please email ngirzi@gmail.com
 ## Technologies Used
 
 * C#
+* MySQL
 * HTML
-* CSS
 * Bootstrap
 * MVC  
 * Razor

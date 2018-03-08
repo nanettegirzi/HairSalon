@@ -1,17 +1,22 @@
 @{
   Layout="_Layout";
 }
+<div class="jumbotron jumbotron-fluid">
+  <h2>Snappy Snips</h2>
+  <hr width=50% id="jumbo">
+  <p>A Cut Above</p>
+</div>
+<div class="container-fluid">
+  <div class = "row">
+    <div class="col-4 img-fluid" >
+      <img class="img" src="~/img/img1.jpg" alt="picture of hair">
+    </div>
+    <div class="col-4 img-fluid" >
+      <img class="img" src="~/img/img2.jpg" alt="picture of hair">
+    </div>
+    <div class="col-4 img-fluid" >
+      <img class="img" src="~/img/img3.jpg" alt="picture of hair">
+    </div>
+  </div>
 
-    <ol>
-      @foreach(var stylist in Model)
-      {
-        <li><h6><a href ="/stylists/details/@stylist.GetId()">@stylist.GetName()</a></h6></li>
-      }
-  </ol>
-  <br>
-    <a href="/stylists/new">Add a Stylist</a>
-    <br>
-    <br>
-    <form action="/categories/delete" method="post">
-    <button class="btn btn-danger" type="submit" name="button">Clear All Categories</button>
-    </form>
+</div>
