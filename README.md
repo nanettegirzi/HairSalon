@@ -12,7 +12,7 @@ _ The home page of the application.
 ![Home](img/home.png)
 
 _ Stylist List Page
-![Home](mg/stylistlist.png)
+![Home](img/stylistlist.png)
 
 _ Edit Stylist Page
 ![Home](img/editstylist.png)
@@ -24,7 +24,7 @@ _ Client List Page
 ![Home](img/clientlist.png)
 
 _ Edit Client Page
-![Home](mg/editclient.png)
+![Home](img/editclient.png)
 
 _ Specialty Page
 ![Home](img/specialty.png)
