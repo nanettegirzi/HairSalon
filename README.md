@@ -6,7 +6,33 @@
 
 ## Description
 
-This application will allow employees of a hair salon see a list of stylists, clients and specialties the salon has to offer.
+This application will allow employees of a hair salon see a list of stylists, clients and specialties the salon has to offer. Also the employee will be able to add, update or delete stylists, clients and specialities.
+
+_ The home page of the application.
+![Home](img/home.png)
+
+_ Stylist List Page
+![Home](mg/stylistlist.png)
+
+_ Edit Stylist Page
+![Home](img/editstylist.png)
+
+_ Add Stylist Page
+![Home](img/addstylist.png)
+
+_ Client List Page
+![Home](img/clientlist.png)
+
+_ Edit Client Page
+![Home](mg/editclient.png)
+
+_ Specialty Page
+![Home](img/specialty.png)
+
+_ Add Specialty
+![Home](img/addspecialty.png)
+
+
 
 
 ##MySQL Commands
