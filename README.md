@@ -17,6 +17,9 @@ _ Stylist List Page
 _ Edit Stylist Page
 ![Home](img/editstylist.png)
 
+_ Stylist Info Page
+![Home](img/stylistinfo.png)
+
 _ Add Stylist Page
 ![Home](img/addstylist.png)
 
